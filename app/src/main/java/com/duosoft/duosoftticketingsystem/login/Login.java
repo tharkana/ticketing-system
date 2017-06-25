@@ -1,6 +1,7 @@
 package com.duosoft.duosoftticketingsystem.login;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.duosoft.duosoftticketingsystem.MainActivity;
 import com.duosoft.duosoftticketingsystem.R;
 import com.duosoft.duosoftticketingsystem.rest_api.ApiClient;
 import com.duosoft.duosoftticketingsystem.rest_api.ApiInterface;
@@ -107,6 +109,7 @@ public class Login extends AppCompatActivity implements Validator.ValidationList
                     UserAuthResponse userAuthResponse = (UserAuthResponse) response.body();
 
                     progressDialog.dismiss();
+                    Log.d(TAG, userAuthResponse.getToken() );
                     sessionManager.createLoginSession("", userAuthResponse.getToken() );
                     onLoginSuccess();
                 }else{
@@ -140,6 +143,8 @@ public class Login extends AppCompatActivity implements Validator.ValidationList
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
         finish();
     }
 
