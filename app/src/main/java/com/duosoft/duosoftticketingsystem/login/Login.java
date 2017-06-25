@@ -24,6 +24,7 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,9 +61,9 @@ public class Login extends AppCompatActivity implements Validator.ValidationList
 
         ButterKnife.bind(this);
 
-        //TODO: Remove this
-        _emailText.setText("kasun.g@duosoftware.com");
-        _passwordText.setText("ADTest123!");
+        //TODO: Remove this For testing purposes
+//        _emailText.setText("kasun.g@duosoftware.com");
+//        _passwordText.setText("ADTest123!");
 
         sessionManager = new SessionManager(getApplicationContext());
         validator = new Validator(this);
@@ -113,8 +114,15 @@ public class Login extends AppCompatActivity implements Validator.ValidationList
                     sessionManager.createLoginSession("", userAuthResponse.getToken() );
                     onLoginSuccess();
                 }else{
-                    Log.d(TAG, response.errorBody().toString() );
-                    onLoginFailed();
+                    String message = "Invalid email and/or password";
+                    try {
+                        Log.d(TAG, response.errorBody().string() );
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    progressDialog.dismiss();
+                    onLoginFailed(message);
                 }
             }
 
@@ -148,8 +156,8 @@ public class Login extends AppCompatActivity implements Validator.ValidationList
         finish();
     }
 
-    public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+    public void onLoginFailed(String message) {
+        Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }
