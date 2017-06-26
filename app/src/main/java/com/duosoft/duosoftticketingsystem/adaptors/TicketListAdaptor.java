@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.RelativeLayout;
 
 import com.duosoft.duosoftticketingsystem.R;
 import com.duosoft.duosoftticketingsystem.rest_api.pojo.TicketListResponse;
@@ -45,13 +47,16 @@ public class TicketListAdaptor extends RecyclerView.Adapter<TicketListAdaptor.Ti
     }
 
     @Override
-    public void onBindViewHolder(TicketListAdaptor.TicketViewHolder holder, int position) {
+    public void onBindViewHolder( TicketListAdaptor.TicketViewHolder holder, int position) {
         TicketListResponse.Ticket ticket = data.get(position);
         Log.d("TK", ticket.toString() );
-        holder.textViewPriority.setText(ticket.getPriority());
-        holder.textViewStatus.setText( ticket.getStatus());
+        holder.textViewPriority.setText(ticket.getPriority().substring(0,1).toUpperCase() + ticket.getPriority().substring(1) );
+        holder.textViewStatus.setText( ticket.getStatus().substring(0,1).toUpperCase() + ticket.getStatus().substring(1) );
+        holder.textViewType.setText( ticket.getType().substring(0,1).toUpperCase() + ticket.getType().substring(1) );
+//        holder.textViewPriority.setText(ticket.getPriority() );
+//        holder.textViewStatus.setText( ticket.getStatus());
+//        holder.textViewType.setText( ticket.getType());
         holder.textViewSubject.setText( ticket.getSubject());
-        holder.textViewType.setText( ticket.getType());
 
         switch (ticket.getPriority()){
             case "urgent": {
@@ -105,6 +110,7 @@ public class TicketListAdaptor extends RecyclerView.Adapter<TicketListAdaptor.Ti
         AppCompatTextView textViewSubject;
         AppCompatTextView textViewType;
         View viewSeperator;
+        RelativeLayout relativeLayoutListView;
 
         public TicketViewHolder(View itemView) {
             super(itemView);
@@ -114,6 +120,7 @@ public class TicketListAdaptor extends RecyclerView.Adapter<TicketListAdaptor.Ti
             textViewSubject = (AppCompatTextView) itemView.findViewById(R.id.textViewSubject);
             textViewType = (AppCompatTextView) itemView.findViewById(R.id.textViewType);
             viewSeperator = (View) itemView.findViewById(R.id.priorityStrip);
+            relativeLayoutListView = (RelativeLayout) itemView.findViewById(R.id.relativeLayoutListView);
         }
     }
 
