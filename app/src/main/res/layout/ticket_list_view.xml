@@ -1,129 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="1dp"
+    android:background="@drawable/border">
 
-    android:background="@color/white"
-    android:orientation="vertical">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativeLayoutListView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/white">
 
-    <!--<View-->
-        <!--android:id="@+id/priorityStrip"-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:background="@android:color/black" />-->
-    <!--<android.support.v7.widget.AppCompatButton-->
-        <!--android:id="@+id/priorityStrip"-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:background="@android:color/black"-->
-    <!--/>-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/staticTextViewSubject"
+            style="@style/TextView.Grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="14dp"
+            android:text="Subject" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewSubject"
+            style="@style/TextView.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/staticTextViewSubject"
+            android:layout_toRightOf="@id/staticTextViewSubject"
+            android:text="Large Text" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/staticTextViewType"
+            style="@style/TextView.Grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewSubject"
+            android:layout_marginLeft="13dp"
+            android:text="Type" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewType"
+            style="@style/TextView.Grey.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/textViewSubject"
+            android:layout_below="@id/textViewSubject"
+            android:layout_toEndOf="@id/staticTextViewSubject"
+            android:layout_toRightOf="@id/staticTextViewSubject"
+            android:text="Medium Text" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/staticTextViewStatus"
+            style="@style/TextView.Grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewType"
+            android:layout_marginLeft="13dp"
+            android:text="Status" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewStatus"
+            style="@style/TextView.Grey.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/textViewType"
+            android:layout_below="@+id/textViewType"
+            android:layout_marginBottom="8dp"
+            android:layout_toRightOf="@id/staticTextViewStatus"
+            android:text="Medium Text" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/staticTextViewPriority"
+            style="@style/TextView.Grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewSubject"
+            android:layout_marginRight="85dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_alignParentRight="true"
+            android:text="Priority" />
+            <!--            android:layout_toLeftOf="@+id/textViewPriority"
+            android:layout_toStartOf="@+id/textViewPriority"-->
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewPriority"
+            style="@style/TextView.Grey.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/textViewSubject"
+            android:layout_marginRight="25dp"
+            android:text="Normal" />
+
+
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/priorityStrip"
         android:layout_width="20dp"
-        android:layout_height="70dp"
+        android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="2dp"
         android:background="@android:color/black" />
 
+</LinearLayout>
 
-<android.support.v7.widget.AppCompatTextView
-    android:id="@+id/staticTextViewSubject"
-    style="@style/TextView.Grey"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Subject"
-    android:layout_marginTop="14dp"
-    android:layout_alignParentLeft="true"
-    android:layout_marginLeft="13dp"
-    android:layout_alignParentStart="true" />
-
-<android.support.v7.widget.AppCompatTextView
-    android:id="@+id/textViewSubject"
-    style="@style/TextView.Blue"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:layout_marginLeft="5dp"
-    android:layout_marginTop="10dp"
-    android:layout_toEndOf="@id/staticTextViewSubject"
-    android:layout_toRightOf="@id/staticTextViewSubject"
-    android:text="Large Text" />
-
-<android.support.v7.widget.AppCompatTextView
-    android:id="@+id/staticTextViewType"
-    style="@style/TextView.Grey"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/textViewSubject"
-    android:layout_marginLeft="13dp"
-    android:layout_marginTop="2dp"
-    android:text="Type" />
-
-<android.support.v7.widget.AppCompatTextView
-    android:id="@+id/textViewType"
-    style="@style/TextView.Grey.Large"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignLeft="@id/textViewSubject"
-    android:layout_below="@id/textViewSubject"
-    android:layout_toEndOf="@id/staticTextViewSubject"
-    android:layout_toRightOf="@id/staticTextViewSubject"
-    android:text="Medium Text" />
-
-<android.support.v7.widget.AppCompatTextView
-    android:id="@+id/staticTextViewStatus"
-    style="@style/TextView.Grey"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/textViewType"
-    android:layout_marginLeft="13dp"
-    android:layout_marginTop="2dp"
-    android:text="Status" />
-
-<android.support.v7.widget.AppCompatTextView
-    android:id="@+id/textViewStatus"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/TextView.Grey.Large"
-    android:layout_below="@+id/textViewType"
-    android:layout_toRightOf="@id/staticTextViewStatus"
-    android:layout_alignLeft="@id/textViewType"
-    android:text="Medium Text"
-    android:layout_marginBottom="8dp"/>
-
-<android.support.v7.widget.AppCompatTextView
-    android:id="@+id/staticTextViewPriority"
-    style="@style/TextView.Grey"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Priority"
-    android:layout_below="@id/textViewSubject"
-    android:layout_toLeftOf="@+id/textViewPriority"
-    android:layout_toStartOf="@+id/textViewPriority"
-    android:layout_marginRight="5dp"/>
-
-<android.support.v7.widget.AppCompatTextView
-    android:id="@+id/textViewPriority"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/TextView.Grey.Large"
-    android:layout_below="@id/textViewSubject"
-    android:text="Medium Text"
-    android:layout_marginRight="13dp"
-    android:layout_toLeftOf="@id/priorityStrip"/>
-
-<View
-    android:id="@+id/sep"
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:layout_marginTop="5dp"
-    android:layout_below="@id/priorityStrip"
-    android:background="@color/listTextColorBlue"
-    />
-
-
-
-</RelativeLayout>
