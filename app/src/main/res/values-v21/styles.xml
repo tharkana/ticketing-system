@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="EditText" parent="@android:style/Widget.EditText">
+        <item name="android:backgroundTint">@color/pink</item>
+
+        <item name="android:textColor">@color/listTextColorBlue</item>
+    </style>
+
+
+</resources>

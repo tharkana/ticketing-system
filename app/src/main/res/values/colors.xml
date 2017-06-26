@@ -15,5 +15,14 @@
     <color name="base">#AAAAAA</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
-    <color name="listTextColor">@color/black</color>
+
+    <color name="listTextColorGrey">#6c6c6c</color>
+    <color name="listTextColorBlue">#29609b</color>
+    <color name="pink">#c64188</color>
+
+    <color name="priorityUrgent">#ae3535</color>
+    <color name="priorityHigh">#b15c33</color>
+    <color name="priorityNormal">#1e5e3e</color>
+
+
 </resources>
