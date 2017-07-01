@@ -62,8 +62,8 @@ public class Login extends AppCompatActivity implements Validator.ValidationList
         ButterKnife.bind(this);
 
         //TODO: Remove this For testing purposes
-//        _emailText.setText("kasun.g@duosoftware.com");
-//        _passwordText.setText("ADTest123!");
+        _emailText.setText("kasun.g@duosoftware.com");
+        _passwordText.setText("ADTest123!");
 
         sessionManager = new SessionManager(getApplicationContext());
         validator = new Validator(this);
@@ -103,7 +103,7 @@ public class Login extends AppCompatActivity implements Validator.ValidationList
 
         UserAuth user = new UserAuth(email, password, scope, "AGENT_CONSOLE", "e8ea7bb0-5026-11e7-a69b-b153a7c332b9" );
         Call<UserAuthResponse> call1 = apiInterface.authenticate(user);
-        call1.enqueue(new Callback() {
+        call1.enqueue(new Callback<UserAuthResponse>() {
             @Override
             public void onResponse(Call call, Response response) {
                 if (response.isSuccessful() && response.body() instanceof UserAuthResponse ) {
@@ -162,6 +162,7 @@ public class Login extends AppCompatActivity implements Validator.ValidationList
         _loginButton.setEnabled(true);
     }
 
+    //Deprecated. using saripaar validation Lib
     public boolean validate() {
         boolean valid = true;
 

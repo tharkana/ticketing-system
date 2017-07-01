@@ -1,7 +1,6 @@
 package com.duosoft.duosoftticketingsystem;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,19 +10,15 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.duosoft.duosoftticketingsystem.adaptors.TicketListAdaptor;
-import com.duosoft.duosoftticketingsystem.rest_api.ApiClient;
 import com.duosoft.duosoftticketingsystem.rest_api.ApiInterface;
 import com.duosoft.duosoftticketingsystem.rest_api.SessionManager;
 import com.duosoft.duosoftticketingsystem.rest_api.TicketApiClient;
 import com.duosoft.duosoftticketingsystem.rest_api.pojo.TicketListResponse;
-import com.duosoft.duosoftticketingsystem.rest_api.pojo.UserAuthResponse;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -44,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TicketListAdaptor adapter;
     private  TicketListResponse ticketListResponse;
-    private List<TicketListResponse.Ticket> tickets = Collections.emptyList();
+    private List<TicketListResponse.Ticket> tickets = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,10 +101,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<TicketListResponse> call, Response<TicketListResponse> response) {
                 if(response.isSuccessful()){
                     ticketListResponse = response.body();
-                    tickets = ticketListResponse.getResult();
-                    Log.d("TK",tickets.toString() );
-//                    adapter.notifyDataSetChanged();
-                    adapter.updateDataSet(tickets);
+                    tickets.addAll(ticketListResponse.getResult());
+                    adapter.notifyDataSetChanged();
 
                 }else{
                     try {
