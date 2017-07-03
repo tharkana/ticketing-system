@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingBottom="1dp"
-    android:background="@drawable/border">
+    android:background="@drawable/border"
+    android:id="@+id/ticketListItem">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/relativeLayoutListView"

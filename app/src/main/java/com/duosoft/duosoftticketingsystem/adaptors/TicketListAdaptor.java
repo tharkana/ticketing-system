@@ -1,16 +1,21 @@
 package com.duosoft.duosoftticketingsystem.adaptors;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.duosoft.duosoftticketingsystem.R;
-import com.duosoft.duosoftticketingsystem.rest_api.pojo.TicketListResponse;
+import com.duosoft.duosoftticketingsystem.TicketDetails;
+import com.duosoft.duosoftticketingsystem.rest_api.pojo.Ticket;
 
 import java.util.List;
 
@@ -21,9 +26,9 @@ public class TicketListAdaptor extends RecyclerView.Adapter<TicketListAdaptor.Ti
 
     private final LayoutInflater inflator;
     private final Context context;
-    List<TicketListResponse.Ticket> data;
+    List<Ticket> data;
 
-    public TicketListAdaptor(Context context, List<TicketListResponse.Ticket> data) {
+    public TicketListAdaptor(Context context, List<Ticket> data) {
         inflator = LayoutInflater.from(context);
         this.data = data;
         this.context = context;
@@ -44,7 +49,7 @@ public class TicketListAdaptor extends RecyclerView.Adapter<TicketListAdaptor.Ti
 
     @Override
     public void onBindViewHolder( TicketListAdaptor.TicketViewHolder holder, int position) {
-        TicketListResponse.Ticket ticket = data.get(position);
+        final Ticket ticket = data.get(position);
 
 //        holder.textViewPriority.setText(ticket.getPriority().substring(0,1).toUpperCase() + ticket.getPriority().substring(1) );
 //        holder.textViewStatus.setText( ticket.getStatus().substring(0,1).toUpperCase() + ticket.getStatus().substring(1) );
@@ -53,6 +58,19 @@ public class TicketListAdaptor extends RecyclerView.Adapter<TicketListAdaptor.Ti
         holder.textViewStatus.setText( makeSentanceCase(  ticket.getStatus() ) );
         holder.textViewType.setText( makeSentanceCase(  ticket.getType() ) );
         holder.textViewSubject.setText( ticket.getSubject());
+
+        holder.ticketListItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, TicketDetails.class);
+//                Bundle b = new Bundle();
+//                b.putParcelable("ticket", ticket);
+                i.putExtra("ticket", ticket);
+//                i.putExtra("ticket",ticket );
+                context.startActivity(i);
+//                ((Activity) context).finish();
+            }
+        });
 
         switch (ticket.getPriority()){
             case "urgent": {
@@ -102,6 +120,7 @@ public class TicketListAdaptor extends RecyclerView.Adapter<TicketListAdaptor.Ti
         AppCompatTextView textViewType;
         View viewSeperator;
         RelativeLayout relativeLayoutListView;
+        LinearLayout ticketListItem;
 
         public TicketViewHolder(View itemView) {
             super(itemView);
@@ -111,6 +130,7 @@ public class TicketListAdaptor extends RecyclerView.Adapter<TicketListAdaptor.Ti
             textViewType = (AppCompatTextView) itemView.findViewById(R.id.textViewType);
             viewSeperator = (View) itemView.findViewById(R.id.priorityStrip);
             relativeLayoutListView = (RelativeLayout) itemView.findViewById(R.id.relativeLayoutListView);
+            ticketListItem = (LinearLayout) itemView.findViewById(R.id.ticketListItem);
         }
     }
 

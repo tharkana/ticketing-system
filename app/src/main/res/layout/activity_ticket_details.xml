@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.duosoft.duosoftticketingsystem.TicketDetails"
+    >
+
+    <include android:id="@+id/app_bar"
+        layout="@layout/app_bar">
+    </include>
+
+    <TextView
+        android:id="@+id/textViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView"
+        android:layout_below="@id/app_bar"
+        style="@style/TextView.Blue.Large"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <ImageView
+        android:id="@+id/priorityStrip"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/textViewId"
+        android:layout_alignTop="@id/textViewId"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/circle" />
+
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/importantDetails"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_below="@id/priorityStrip"
+        card_view:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/staticTextViewType"
+                style="@style/TextView.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="13dp"
+                android:text="Type" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/textViewType"
+                style="@style/TextView.Grey.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_toRightOf="@id/staticTextViewType"
+                android:layout_marginTop="5dp"
+                android:text="Type" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/staticTextViewStatus"
+                style="@style/TextView.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:text="Status" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/textViewStatus"
+                style="@style/TextView.Grey.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:text="New" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/staticTextViewPriority"
+                style="@style/TextView.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewType"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="0.5dp"
+                android:text="Priority" />
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/textViewPriority"
+                style="@style/TextView.Grey.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewType"
+                android:layout_alignLeft="@id/textViewType"
+                android:layout_toRightOf="@id/staticTextViewPriority"
+                android:text="Normal" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/importantDetails"
+        card_view:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/staticTextViewRequester"
+                style="@style/TextView.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+
+                android:layout_marginTop="5dp"
+                android:text="Requester" />
+
+            <ImageView
+                android:id="@+id/requesteerImg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/staticTextViewRequester"
+                android:layout_marginLeft="20dp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/staticTextViewassignee"
+                style="@style/TextView.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_toRightOf="@id/requesteerImg"
+                android:layout_marginTop="5dp"
+                android:text="Requester" />
+
+            <ImageView
+                android:id="@+id/assigneeImg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/staticTextViewRequester"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/requesteerImg"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/staticTextViewSubmitter"
+                style="@style/TextView.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_toRightOf="@id/assigneeImg"
+                android:layout_marginTop="5dp"
+                android:text="Requester" />
+
+            <ImageView
+                android:id="@+id/submitterImg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/staticTextViewRequester"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/assigneeImg"/>
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/commentList"
+        android:layout_below="@id/users"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentLeft="true"
+
+        >
+
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>

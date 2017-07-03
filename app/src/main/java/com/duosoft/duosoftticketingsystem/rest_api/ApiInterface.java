@@ -1,5 +1,7 @@
 package com.duosoft.duosoftticketingsystem.rest_api;
 
+import com.duosoft.duosoftticketingsystem.rest_api.pojo.Ticket;
+import com.duosoft.duosoftticketingsystem.rest_api.pojo.TicketDetailsResponse;
 import com.duosoft.duosoftticketingsystem.rest_api.pojo.TicketListResponse;
 import com.duosoft.duosoftticketingsystem.rest_api.pojo.UserAuth;
 import com.duosoft.duosoftticketingsystem.rest_api.pojo.UserAuthResponse;
@@ -20,6 +22,9 @@ public interface ApiInterface {
     @POST("/auth/login")
     Call<UserAuthResponse> authenticate(@Body UserAuth user);
 
-    @GET("MyTickets/10/1?status=new")
-    Call<TicketListResponse> getTicketList();
+    @GET("MyTickets/10/{page}?status=new")
+    Call<TicketListResponse> getTicketList(@Path("page") int ticketid);
+
+    @GET("Ticket/{ticketid}/Details")
+    Call<TicketDetailsResponse> getTicketDetails(@Path("ticketid") String ticketid);
 }

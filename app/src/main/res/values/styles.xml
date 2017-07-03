@@ -43,6 +43,12 @@
 
     </style>
 
+    <style name="TextView.Blue.Large" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textColor">@color/listTextColorBlue</item>
+        <item name="android:textSize">25sp</item>
+
+    </style>
+
     <style name="EditText" >
         <item name="backgroundTint">@color/pink</item>
         <item name="android:textColor">@color/listTextColorBlue</item>

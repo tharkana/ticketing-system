@@ -62,8 +62,8 @@ public class Login extends AppCompatActivity implements Validator.ValidationList
         ButterKnife.bind(this);
 
         //TODO: Remove this For testing purposes
-        _emailText.setText("kasun.g@duosoftware.com");
-        _passwordText.setText("ADTest123!");
+//        _emailText.setText("kasun.g@duosoftware.com");
+//        _passwordText.setText("ADTest123!");
 
         sessionManager = new SessionManager(getApplicationContext());
         validator = new Validator(this);

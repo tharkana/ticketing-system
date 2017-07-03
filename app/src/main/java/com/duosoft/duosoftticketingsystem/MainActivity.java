@@ -11,10 +11,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.duosoft.duosoftticketingsystem.adaptors.EndlessRecyclerViewScrollListener;
 import com.duosoft.duosoftticketingsystem.adaptors.TicketListAdaptor;
 import com.duosoft.duosoftticketingsystem.rest_api.ApiInterface;
 import com.duosoft.duosoftticketingsystem.rest_api.SessionManager;
 import com.duosoft.duosoftticketingsystem.rest_api.TicketApiClient;
+import com.duosoft.duosoftticketingsystem.rest_api.pojo.Ticket;
 import com.duosoft.duosoftticketingsystem.rest_api.pojo.TicketListResponse;
 
 import java.io.IOException;
@@ -39,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TicketListAdaptor adapter;
     private  TicketListResponse ticketListResponse;
-    private List<TicketListResponse.Ticket> tickets = new ArrayList<>();
+    private List<Ticket> tickets = new ArrayList<>();
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +63,50 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Ticket List");
 
         adapter = new TicketListAdaptor( this, tickets );
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        LinearLayoutManager linearLayoutManager =new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         getTicketList();
 
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                loadNextDataFromApi(page);
+            }
+        };
 
     }
 
+    private void loadNextDataFromApi(int page) {
+        Call<TicketListResponse> call = apiInterface.getTicketList();
+        call.enqueue(new Callback<TicketListResponse>() {
+            @Override
+            public void onResponse(Call<TicketListResponse> call, Response<TicketListResponse> response) {
+                if(response.isSuccessful()){
+                    ticketListResponse = response.body();
+                    tickets.addAll(ticketListResponse.getResult());
+                    adapter.notifyDataSetChanged();
+
+                }else{
+                    try {
+                        Log.d("TK", response.errorBody().string() );
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<TicketListResponse> call, Throwable t) {
+                Log.d("TK", t.toString() );
+            }
+        });
+    }
 
 
     @Override
@@ -95,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getTicketList() {
-        Call<TicketListResponse> call = apiInterface.getTicketList();
+        Call<TicketListResponse> call = apiInterface.getTicketList(1);
         call.enqueue(new Callback<TicketListResponse>() {
             @Override
             public void onResponse(Call<TicketListResponse> call, Response<TicketListResponse> response) {
@@ -103,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     ticketListResponse = response.body();
                     tickets.addAll(ticketListResponse.getResult());
                     adapter.notifyDataSetChanged();
+//                    adapter.notifyItemRangeChanged();
 
                 }else{
                     try {
@@ -117,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<TicketListResponse> call, Throwable t) {
-
+                Log.d("TK", t.toString() );
             }
         });
     }
